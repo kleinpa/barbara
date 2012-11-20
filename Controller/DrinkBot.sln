@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkBot", "DrinkBot\DrinkBot.csproj", "{B9909E8C-346A-4CDA-9ECC-6EA1193ADD86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkBotConsole", "DrinkBotConsole\DrinkBotConsole.csproj", "{A73CC31A-867D-423C-BAAF-D9E3564E6BEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DrinkBotUI", "DrinkBotUI\DrinkBotUI.csproj", "{0C848C12-7950-4A86-8E93-83BA2CAB86FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GinAndTonicUI", "GinAndTonicUI\GinAndTonicUI.csproj", "{1D78FE46-1769-4F26-BEC1-2A5F75A88CF5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B9909E8C-346A-4CDA-9ECC-6EA1193ADD86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9909E8C-346A-4CDA-9ECC-6EA1193ADD86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9909E8C-346A-4CDA-9ECC-6EA1193ADD86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9909E8C-346A-4CDA-9ECC-6EA1193ADD86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A73CC31A-867D-423C-BAAF-D9E3564E6BEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A73CC31A-867D-423C-BAAF-D9E3564E6BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A73CC31A-867D-423C-BAAF-D9E3564E6BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A73CC31A-867D-423C-BAAF-D9E3564E6BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C848C12-7950-4A86-8E93-83BA2CAB86FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C848C12-7950-4A86-8E93-83BA2CAB86FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C848C12-7950-4A86-8E93-83BA2CAB86FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C848C12-7950-4A86-8E93-83BA2CAB86FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D78FE46-1769-4F26-BEC1-2A5F75A88CF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D78FE46-1769-4F26-BEC1-2A5F75A88CF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D78FE46-1769-4F26-BEC1-2A5F75A88CF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D78FE46-1769-4F26-BEC1-2A5F75A88CF5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
