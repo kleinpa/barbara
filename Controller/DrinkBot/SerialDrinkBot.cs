@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DrinkBotLib
 {
-    public class SerialDrinkBot : DrinkMaker
+    public class SerialDrinkBot : ILiquidDispenser
     {
         private static SerialDrinkBot local = null;
         public static SerialDrinkBot Local
@@ -17,18 +17,16 @@ namespace DrinkBotLib
             {
                 if (local == null)
                 {
-                    var ingredients = new string[]{"Gin", "Tonic Water", "Wine"};
-                    using(var db = new DrinkBotEntities())
-                    {
-                        local = new SerialDrinkBot("COM3", ingredients.Select(name => db.Ingredients.Single(i => i.Name == name)));
-                    }
+                    
+                    local = new SerialDrinkBot("COM3", "Gin,Tonic Water,Wine".Split(','));
+                    
                 }
                 return local;
             }
 
         }
 
-        public Dictionary<Ingredient, byte> Ingredients { get; set; }
+        public Dictionary<string, byte> Ingredients { get; set; }
 
         private SerialPort serialPort;
 
@@ -43,10 +41,10 @@ namespace DrinkBotLib
 
         }
 
-        public SerialDrinkBot(string portName, IEnumerable<Ingredient> ingredients, int unitTime = 1400)
+        public SerialDrinkBot(string portName, IEnumerable<string> ingredients, int unitTime = 1400)
         {
             int i = 0;
-            var ingredientList = new Dictionary<Ingredient, byte>();
+            var ingredientList = new Dictionary<string, byte>();
             foreach (var ingredient in ingredients)
             {
                 ingredientList[ingredient] = (byte)i++;
@@ -61,18 +59,15 @@ namespace DrinkBotLib
             this.UnitTime = unitTime;
         }
 
-        public override void Dispense(IEnumerable<KeyValuePair<Ingredient, double>> recipe)
-        {
-            foreach (var kv in recipe)
-            {
-                Dispense(kv.Key, kv.Value);
-            }
-        }
-
-        private void Dispense(Ingredient ingredient, double amount)
+        public void Dispense(string ingredient, double amount)
         {
             
-            this.Send(Command.Dispense(Ingredients.Single(kv => kv.Key.ID == ingredient.ID).Value, (byte)(amount/unitSize)));
+            this.Send(Command.Dispense(Ingredients[ingredient], (byte)(amount/unitSize)));
+        }
+
+        public bool CanDispense(string ingredient)
+        {
+            return Ingredients.ContainsKey(ingredient);
         }
 
         private void Reset()

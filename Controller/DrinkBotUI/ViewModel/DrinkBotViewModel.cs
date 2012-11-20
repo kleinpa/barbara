@@ -63,10 +63,11 @@ namespace DrinkBotUI.ViewModel
                 {
                     Dispense(SelectedRecipe, SelectedUser);
                 });
-            drinkBot = SerialDrinkBot.Local;
+
+            drinkBot = new RecipeDispenser(SerialDrinkBot.Local);
         }
 
-        private DrinkMaker drinkBot;
+        private RecipeDispenser drinkBot;
 
         private void Dispense(Recipe recipe, User user)
         {

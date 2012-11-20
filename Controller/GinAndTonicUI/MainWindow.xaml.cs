@@ -15,32 +15,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApplication1
+namespace GinAndTonicUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        SerialDrinkBot drinkBot;
-        IEnumerable<KeyValuePair<Ingredient, double>> ginAndTonic;
+        RecipeDispenser dispenser;
 
         public MainWindow()
         {
-            drinkBot = SerialDrinkBot.Local;
-
-            using(var db = new DrinkBotEntities())
-            {
-                ginAndTonic = db.Recipes.Single(r => r.Name == "Gin and Tonic");
-            }
-
-
-            
+            dispenser = new RecipeDispenser(new DummyDispenser());//SerialDrinkBot.Local; 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            drinkBot.Dispense(ginAndTonic);
+            dispenser.Dispense("Gin and Tonic");
         }
     }
 }

@@ -13,12 +13,12 @@ namespace DrinkBotConsole
     {
         static void Main(string[] args)
         {
-            SerialDrinkBot b = SerialDrinkBot.Local;
-            
-            using (var db = new DrinkBotEntities())
-            {
-                b.Dispense(db.Recipes.Single(r => r.Name == "Gin and Tonic"));
-            }
+            //SerialDrinkBot b = SerialDrinkBot.Local;
+
+            ILiquidDispenser d = new DummyDispenser();
+
+            d.Dispense("Gin",3.0);
+            d.Dispense("Tonic Water", 1.5);
 
             
         }
