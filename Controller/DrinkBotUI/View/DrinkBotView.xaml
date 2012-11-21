@@ -8,22 +8,23 @@
         
         d:DataContext="{d:DesignInstance Type=vm:DrinkBotViewModel, IsDesignTimeCreatable=True}"
         
-        Title="DrinkBotView" Height="435.821" Width="541.791"
+        Title="DrinkBot UI" Height="435.821" Width="541.791"
         
         >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="149*"/>
+            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="178*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}"/>
-        <ListBox Grid.Column="1" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}"/>
-        <Button Content="Make Drink" Grid.Column="2" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Command="{Binding DispenseCommand}"/>
-        <Label Grid.Row="1" Content="{Binding DatabaseState}" />
+        <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Grid.ColumnSpan="2"/>
+        <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}"/>
+        <Button Content="Make Drink" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
+        <Label Grid.Row="1" Content="{Binding DatabaseState}" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

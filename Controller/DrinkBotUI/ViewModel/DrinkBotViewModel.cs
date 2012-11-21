@@ -22,7 +22,7 @@ namespace DrinkBotUI.ViewModel
                 return Database.Users.Local;
             }
         }
-        public User SelectedUser { get; set; }
+        
 
         public IEnumerable<Recipe> Recipes
         {
@@ -32,7 +32,36 @@ namespace DrinkBotUI.ViewModel
                 return Database.Recipes.Local;
             }
         }
-        public Recipe SelectedRecipe { get; set; }
+
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get
+            {
+                return selectedUser;
+            }
+            set
+            {
+                this.selectedUser = value;
+                RaisePropertyChanged("SelectedUser");
+                RaisePropertyChanged("ReadyToDispense");
+            }
+        }
+
+        private Recipe selectedRecipe;
+        public Recipe SelectedRecipe
+        { 
+            get
+            {
+                return this.selectedRecipe;
+            } 
+            set
+            {
+                this.selectedRecipe = value;
+                RaisePropertyChanged("SelectedRecipe");
+                RaisePropertyChanged("ReadyToDispense");
+            }
+        }
 
         public RelayCommand DispenseCommand { get; set; }
 
@@ -42,6 +71,14 @@ namespace DrinkBotUI.ViewModel
             {
                 return this.Database.Database.Connection.State.ToString();
 
+            }
+        }
+
+        public bool ReadyToDispense
+        {
+            get
+            {
+                return SelectedRecipe != null && SelectedUser != null && recipeDispenser.CanDispense(SelectedRecipe);
             }
         }
 
@@ -64,15 +101,15 @@ namespace DrinkBotUI.ViewModel
                     Dispense(SelectedRecipe, SelectedUser);
                 });
 
-            drinkBot = new RecipeDispenser(SerialDrinkBot.Local);
+            recipeDispenser = new RecipeDispenser(SerialDrinkBot.Local);
         }
 
-        private RecipeDispenser drinkBot;
+        private RecipeDispenser recipeDispenser;
 
         private void Dispense(Recipe recipe, User user)
         {
             
-            drinkBot.Dispense(recipe);
+            recipeDispenser.Dispense(recipe);
 
             var serving = new Serving();// Database.Servings.Create();
             

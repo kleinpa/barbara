@@ -54,6 +54,7 @@ namespace DrinkBotLib
 
             serialPort = new SerialPort(portName, 9600);
             serialPort.Open();
+            
             Reset();
 
             this.UnitTime = unitTime;
@@ -61,7 +62,6 @@ namespace DrinkBotLib
 
         public void Dispense(string ingredient, double amount)
         {
-            
             this.Send(Command.Dispense(Ingredients[ingredient], (byte)(amount/unitSize)));
         }
 

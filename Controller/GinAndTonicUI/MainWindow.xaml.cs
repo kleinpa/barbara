@@ -26,7 +26,7 @@ namespace GinAndTonicUI
 
         public MainWindow()
         {
-            dispenser = new RecipeDispenser(new DummyDispenser());//SerialDrinkBot.Local; 
+            dispenser = new RecipeDispenser(SerialDrinkBot.Local); 
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
