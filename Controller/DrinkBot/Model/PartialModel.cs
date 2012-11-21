@@ -31,6 +31,22 @@ namespace DrinkBotLib.Model
         {
             return this.GetEnumerator();
         }
+
+        public decimal Volume
+        {
+            get
+            {
+                return RecipeIngredients.Select(ri => ri.Amount).Sum();
+            }
+        }
+
+        public decimal ABV
+        {
+            get
+            {
+                return RecipeIngredients.Select(ri => ri.Amount * ri.Ingredient1.ABV).Sum() / this.Volume;
+            }
+        }
     }
 
     public partial class User
