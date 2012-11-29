@@ -1,4 +1,4 @@
-﻿using DrinkBotLib.Model;
+﻿
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,7 @@ namespace DrinkBotUI.ViewModel
 {
     public class DrinkBotViewModel : ViewModelBase
     {
-        private DrinkBotEntities Database;
+        /*private DrinkBotEntities Database;
 
         public IEnumerable<User> Users
         {
@@ -119,6 +119,6 @@ namespace DrinkBotUI.ViewModel
             Database.Servings.Add(serving);
             Database.SaveChanges();
 
-        }
+        }*/
     }
 }

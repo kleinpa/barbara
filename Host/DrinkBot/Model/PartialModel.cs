@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DrinkBotLib.Model
 {
-    public partial class Recipe : IEnumerable<KeyValuePair<Ingredient, double>>
+    /*public partial class Recipe : IEnumerable<KeyValuePair<Ingredient, double>>
     {
         public override string ToString()
         {
@@ -63,5 +63,5 @@ namespace DrinkBotLib.Model
         {
             return Name;
         }
-    }
+    }*/
 }
