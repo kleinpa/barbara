@@ -9,13 +9,13 @@ namespace DrinkBotLib
 {
     public class RecipeMananger
     {
-        public IEnumerable<Recipe> Recipes
+        /*public IEnumerable<Recipe> Recipes
         {
             get
             {
                 var db = new DrinkBotEntities();
                 return null;
             }
-        }
+        }*/
     }
 }
