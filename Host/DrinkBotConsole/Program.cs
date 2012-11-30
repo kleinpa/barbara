@@ -13,11 +13,22 @@ namespace DrinkBotConsole
     {
         static void Main(string[] args)
         {
-            Context cx = new Context();
-            
-            cx.Users.Add(new User{Name = "Peter", ID=1});
-            cx.SaveChanges();
-            
+            using (Context cx = new Context())
+            {
+                cx.Database.CreateIfNotExists();
+
+                foreach (var user in cx.Users)
+                {
+                    System.Console.WriteLine("{0}({1})", user.Name, user.ID);
+                }
+
+                User u = new User { Name = "Peter"};
+                cx.Users.Add(u);
+                cx.SaveChanges();
+                
+            }
+            System.Console.WriteLine("Done");
+            System.Console.ReadKey(false);
 
 
             

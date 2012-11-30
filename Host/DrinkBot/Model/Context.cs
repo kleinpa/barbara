@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DrinkBotLib.Model
 {
     public class Context : DbContext
@@ -14,8 +15,5 @@ namespace DrinkBotLib.Model
         public DbSet<Serving> Servings { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public Context() : base(@"Data Source=|DataDirectory|\Database.sdf")
-        {
-        }
     }
 }
