@@ -10,6 +10,6 @@ namespace DrinkBotLib.Model
     {
         public int ID { get; private set; }
         public string Name { get; private set; }
-        public IEnumerable<Ingredient> Ingredients { get; private set; }
+        public ICollection<Ingredient> Ingredients { get; private set; }
     }
 }
