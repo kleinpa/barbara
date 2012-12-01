@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,19 @@ namespace DrinkBotLib.Model
 {
     public class Serving
     {
-        public int ID { get; private set; }
-        public Recipe Recipe { get; private set; }
-        public User User { get; private set; }
-        public DateTime Time { get; private set; }
-        public decimal Scale { get; private set; }
+        [Key]
+        public int ID { get; set; }
+
+        [Required]
+        public Recipe Recipe { get; set; }
+
+        [Required]
+        public User User { get; set; }
+
+        [Required]
+        public DateTime Time { get; set; }
+
+        [Required]
+        public decimal Scale { get; set; }
     }
 }

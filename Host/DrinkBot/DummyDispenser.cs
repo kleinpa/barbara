@@ -25,12 +25,18 @@ namespace DrinkBotLib
 
         public bool CanDispense(string ingredient)
         {
-            return allIngredients && ingredients.Contains(ingredient);
+            return allIngredients || ingredients.Contains(ingredient);
         }
 
         public void Dispense(string ingredient, double amount)
         {
             MessageBox.Show(string.Format("Dispensing {1} ounces of {0}", ingredient, amount));
+        }
+
+        public DummyDispenser Warn(string warning = "")
+        {
+            MessageBox.Show(string.Format("{0} Using Dummy Dispenser",warning));
+            return this;
         }
     }
 }
