@@ -4,27 +4,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:DrinkBotUI.ViewModel"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:m="clr-namespace:DrinkBotLib.Model;assembly=DrinkBot"
         mc:Ignorable="d"
         
-        d:DataContext="{d:DesignInstance Type=vm:DrinkBotViewModel, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance Type=vm:DrinkBotViewModel}"
         
-        Title="DrinkBot UI" Height="435.821" Width="541.791"
+        Title="DrinkBot UI" Height="500" Width="700"
         
         >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type m:Recipe}">
+            <DockPanel Margin="6" Background="#eee" Height="120" Width="120">
+                <Image DockPanel.Dock="Top" Source="{Binding ImageUrl}" Width="108" Height="78"/>
+                <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" Text="{Binding Name}" FontWeight="Bold" />
+                <TextBlock  DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+                    <TextBlock Text="{Binding Volume, StringFormat='\{0:0\} oz'}" />
+                    <TextBlock Text="{Binding AlcoholByVolume, StringFormat='(\{0:0\}%)'}" />
+                </TextBlock>
+            </DockPanel>
+            <!--<StackPanel
+                <Label Content="{Binding Name}" />
+            </StackPanel>-->
+        </DataTemplate>
+        
+        <Style TargetType="{x:Type ListBox}">
+            <!-- Set the ItemTemplate of the ListBox to a DataTemplate which
+           explains how to display an object of type BitmapImage. -->
+            
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            
+        </Style>
+    </Window.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="149*"/>
-            <ColumnDefinition Width="178*"/>
-            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="24*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Grid.ColumnSpan="2"/>
+        
+        
+        <StackPanel Grid.Column="0" Margin="3">
+            <Label Content="Drinks" FontSize="20" />
+            <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True" >
+                                <!--<Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Background" Value="BLack" />
+                                <Setter Property="Foreground" Value="Black" />-->
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </StackPanel>
+        
+        
+        <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Top">
+            <Label Content="Users" FontSize="20" VerticalAlignment="Bottom"/>
+            <ComboBox  ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Bottom">
+            <Button Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
+        </StackPanel>
+        <!--<ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Grid.ColumnSpan="2"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}"/>
         <Button Content="Make Drink" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
         <Label Grid.Row="1" Content="{Binding DatabaseState}" Grid.ColumnSpan="2" />
+        <WrapPanel Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="427,170,-349,0" VerticalAlignment="Top" Width="100"/>-->
     </Grid>
 </Window>
