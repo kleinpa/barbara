@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using GalaSoft.MvvmLight.Command;
 using DrinkBotLib;
+using DrinkBotLib.Model;
 
 namespace DrinkBotUI.ViewModel
 {
     public class DrinkBotViewModel : ViewModelBase
     {
-        /*private DrinkBotEntities Database;
-
         public IEnumerable<User> Users
         {
             get
             {
-                return Database.Users.Local;
+                if (recipeDispenser != null)
+                    return recipeDispenser.Users;
+                else return default(IEnumerable<User>);
             }
         }
         
@@ -28,8 +29,9 @@ namespace DrinkBotUI.ViewModel
         {
             get
             {
-                
-                return Database.Recipes.Local;
+                if (recipeDispenser != null)
+                    return recipeDispenser.Recipes;
+                else return default(IEnumerable<Recipe>);
             }
         }
 
@@ -65,14 +67,7 @@ namespace DrinkBotUI.ViewModel
 
         public RelayCommand DispenseCommand { get; set; }
 
-        public string DatabaseState
-        {
-            get
-            {
-                return this.Database.Database.Connection.State.ToString();
-
-            }
-        }
+       
 
         public bool ReadyToDispense
         {
@@ -84,41 +79,27 @@ namespace DrinkBotUI.ViewModel
 
         public DrinkBotViewModel()
         {
-            this.Database = new DrinkBotEntities();
-            //this.Database.Database.Connection.Open();
-            
-            Database.Recipes.Load();
-            Database.Users.Load();
-            
-
-            this.Database.Database.Connection.StateChange += (s,e) =>
-                {
-                    RaisePropertyChanged("DatabaseState");
-                };
-
             DispenseCommand = new RelayCommand(() =>
                 {
                     Dispense(SelectedRecipe, SelectedUser);
                 });
-
-            recipeDispenser = new RecipeDispenser(SerialDrinkBot.Local);
+            new Task(() =>
+                {
+                    recipeDispenser = new RecipeDispenser(SerialDrinkBot.Local);
+                    RaisePropertyChanged("SelectedUser");
+                    RaisePropertyChanged("ReadyToDispense");
+                    RaisePropertyChanged("Recipes");
+                    RaisePropertyChanged("Users");
+                }).Start();
         }
+
+        
 
         private RecipeDispenser recipeDispenser;
 
         private void Dispense(Recipe recipe, User user)
         {
-            
-            recipeDispenser.Dispense(recipe);
-
-            var serving = new Serving();// Database.Servings.Create();
-            
-            serving.Recipe = recipe.ID;
-            serving.User = user.ID;
-            serving.Time = DateTime.Now;
-            Database.Servings.Add(serving);
-            Database.SaveChanges();
-
-        }*/
+            recipeDispenser.Dispense(recipe, user);
+        }
     }
 }
