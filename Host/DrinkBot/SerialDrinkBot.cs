@@ -1,6 +1,7 @@
 ﻿using DrinkBotLib.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
@@ -10,15 +11,23 @@ namespace DrinkBotLib
 {
     public class SerialDrinkBot : ILiquidDispenser
     {
-        private static SerialDrinkBot local = null;
-        public static SerialDrinkBot Local
+        private static ILiquidDispenser local = null;
+        public static ILiquidDispenser Local
         {
             get
             {
                 if (local == null)
                 {
-                    
-                    local = new SerialDrinkBot("COM3", "Gin,Tonic Water,Wine".Split(','));
+                    try
+                    {
+                        local = new SerialDrinkBot("COM3", "Gin,Tonic Water,Wine".Split(','));
+                    }
+                    catch(IOException e)
+                    {
+                        
+                        local = new DummyDispenser().Warn(e.Message);
+                        
+                    }
                     
                 }
                 return local;
