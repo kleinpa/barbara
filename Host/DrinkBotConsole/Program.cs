@@ -48,6 +48,10 @@ namespace DrinkBotConsole
 
             User peter = new User { Name = "Peter" };
             peter = db.Users.Add(peter);
+            User hannah = new User { Name = "Hannah" };
+            hannah = db.Users.Add(hannah);
+            User pat = new User { Name = "Pat" };
+            pat = db.Users.Add(pat);
             
             db.SaveChanges();
 
