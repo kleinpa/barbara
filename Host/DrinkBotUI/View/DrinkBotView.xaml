@@ -14,12 +14,12 @@
         >
     <Window.Resources>
         <DataTemplate DataType="{x:Type m:Recipe}">
-            <DockPanel Margin="6" Background="#eee" Height="120" Width="120">
+            <DockPanel Margin="6" Height="120" Width="120">
                 <Image DockPanel.Dock="Top" Source="{Binding ImageUrl}" Width="108" Height="78"/>
                 <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" Text="{Binding Name}" FontWeight="Bold" />
-                <TextBlock  DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
-                    <TextBlock Text="{Binding Volume, StringFormat='\{0:0\} oz'}" />
-                    <TextBlock Text="{Binding AlcoholByVolume, StringFormat='(\{0:0\}%)'}" />
+                <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
+                    <TextBlock Text="{Binding Volume, StringFormat='\{0:0.#\} oz'}" />
+                    <TextBlock Text="{Binding AlcoholByVolume, StringFormat='(\{0:0.#\}%)'}" />
                 </TextBlock>
             </DockPanel>
             <!--<StackPanel
@@ -27,20 +27,7 @@
             </StackPanel>-->
         </DataTemplate>
         
-        <Style TargetType="{x:Type ListBox}">
-            <!-- Set the ItemTemplate of the ListBox to a DataTemplate which
-           explains how to display an object of type BitmapImage. -->
-            
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <WrapPanel />
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-            
-        </Style>
+        
     </Window.Resources>
     
     <Grid>
@@ -54,9 +41,14 @@
         </Grid.RowDefinitions>
         
         
-        <StackPanel Grid.Column="0" Margin="3">
-            <Label Content="Drinks" FontSize="20" />
+        <DockPanel Grid.Column="0" Margin="3" LastChildFill="True">
+            <Label DockPanel.Dock="Top" Content="Drinks" FontSize="20" />
             <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Style.Triggers>
@@ -69,16 +61,14 @@
                     </Style>
                 </ListBox.ItemContainerStyle>
             </ListBox>
-        </StackPanel>
+        </DockPanel>
         
         
-        <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Top">
-            <Label Content="Users" FontSize="20" VerticalAlignment="Bottom"/>
-            <ComboBox  ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
-        </StackPanel>
-        <StackPanel Grid.Column="1" Margin="3" VerticalAlignment="Bottom">
-            <Button Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
-        </StackPanel>
+        <DockPanel Grid.Column="1" Margin="3" LastChildFill="True">
+            <Label DockPanel.Dock="Top" Content="Users" FontSize="20" VerticalAlignment="Bottom"/>
+            <Button DockPanel.Dock="Bottom" Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
+            <ListBox DockPanel.Dock="Top" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+        </DockPanel>
         <!--<ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Grid.ColumnSpan="2"/>
         <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}"/>
         <Button Content="Make Drink" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
