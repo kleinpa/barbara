@@ -32,8 +32,8 @@
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="65*"/>
-            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -46,16 +46,14 @@
             <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel/>
+                        <WrapPanel />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Style.Triggers>
                             <Trigger Property="IsSelected" Value="True" >
-                                <!--<Setter Property="FontWeight" Value="Bold" />
-                                <Setter Property="Background" Value="BLack" />
-                                <Setter Property="Foreground" Value="Black" />-->
+                                <Setter Property="Background" Value="Black" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
@@ -63,16 +61,10 @@
             </ListBox>
         </DockPanel>
         
-        
         <DockPanel Grid.Column="1" Margin="3" LastChildFill="True">
             <Label DockPanel.Dock="Top" Content="Users" FontSize="20" VerticalAlignment="Bottom"/>
-            <Button DockPanel.Dock="Bottom" Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
+            <Button DockPanel.Dock="Bottom" Margin="0,6,0,0" Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
             <ListBox DockPanel.Dock="Top" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
         </DockPanel>
-        <!--<ListBox Grid.Column="0" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" Grid.ColumnSpan="2"/>
-        <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}"/>
-        <Button Content="Make Drink" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
-        <Label Grid.Row="1" Content="{Binding DatabaseState}" Grid.ColumnSpan="2" />
-        <WrapPanel Grid.Column="3" HorizontalAlignment="Left" Height="100" Margin="427,170,-349,0" VerticalAlignment="Top" Width="100"/>-->
     </Grid>
 </Window>
