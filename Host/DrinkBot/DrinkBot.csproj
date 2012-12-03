@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="DummyDispenser.cs" />
     <Compile Include="ILiquidDispenser.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\DrinkBotData.cs" />
     <Compile Include="Model\Ingredient.cs" />
     <Compile Include="Model\Recipe.cs" />
