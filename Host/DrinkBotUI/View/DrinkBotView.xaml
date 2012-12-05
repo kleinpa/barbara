@@ -9,6 +9,7 @@
         d:DataContext="{d:DesignInstance Type=vm:DrinkBotViewModel}"
         Title="DrinkBot UI" Height="500" Width="700">
     <Window.Resources>
+        <!-- Template for recipe -->
         <DataTemplate DataType="{x:Type m:Recipe}">
             <DockPanel Margin="6" Height="120" Width="120">
                 <Border DockPanel.Dock="Top" Background="White" Width="108" Height="78">
@@ -21,7 +22,8 @@
                 </TextBlock>
             </DockPanel>
         </DataTemplate>
-        
+
+        <!-- ListBox selection style (applies to both recipes and users) -->
         <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -56,7 +58,7 @@
         <DockPanel Grid.Column="0" Margin="3" LastChildFill="True">
             <Label DockPanel.Dock="Top" Content="Drinks" FontSize="20" />
 
-            <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" TabIndex="1">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -67,8 +69,8 @@
         
         <DockPanel Grid.Column="1" Margin="3" LastChildFill="True">
             <Label DockPanel.Dock="Top" Content="Users" FontSize="20" VerticalAlignment="Bottom"/>
-            <Button DockPanel.Dock="Bottom" Margin="0,6,0,0" Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}"/>
-            <ListBox DockPanel.Dock="Top" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" />
+            <Button DockPanel.Dock="Bottom" Margin="0,6,0,0" Content="Dispense" FontSize="20" Grid.Column="3" Command="{Binding DispenseCommand}" IsEnabled="{Binding ReadyToDispense}" TabIndex="3" />
+            <ListBox DockPanel.Dock="Top" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" TabIndex="2" />
         </DockPanel>
     </Grid>
 </Window>
