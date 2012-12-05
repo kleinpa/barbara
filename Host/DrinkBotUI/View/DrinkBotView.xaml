@@ -6,28 +6,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:m="clr-namespace:DrinkBotLib.Model;assembly=DrinkBot"
         mc:Ignorable="d"
-        
         d:DataContext="{d:DesignInstance Type=vm:DrinkBotViewModel}"
-        
-        Title="DrinkBot UI" Height="500" Width="700"
-        
-        >
+        Title="DrinkBot UI" Height="500" Width="700">
     <Window.Resources>
         <DataTemplate DataType="{x:Type m:Recipe}">
             <DockPanel Margin="6" Height="120" Width="120">
-                <Image DockPanel.Dock="Top" Source="{Binding ImageUrl}" Width="108" Height="78"/>
+                <Border DockPanel.Dock="Top" Background="White" Width="108" Height="78">
+                    <Image  Source="{Binding ImageUrl}" />
+                </Border>
                 <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" Text="{Binding Name}" FontWeight="Bold" />
                 <TextBlock DockPanel.Dock="Bottom" HorizontalAlignment="Center" >
                     <TextBlock Text="{Binding Volume, StringFormat='\{0:0.#\} oz'}" />
                     <TextBlock Text="{Binding AlcoholByVolume, StringFormat='(\{0:0.#\}%)'}" />
                 </TextBlock>
             </DockPanel>
-            <!--<StackPanel
-                <Label Content="{Binding Name}" />
-            </StackPanel>-->
         </DataTemplate>
         
-        
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="IconBorder" BorderThickness="3" Padding="2" >
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="IconBorder" Property="Background" Value="#ff991d" />
+                                <Setter TargetName="IconBorder" Property="BorderBrush" Value="#e66b1b" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Window.Resources>
     
     <Grid>
@@ -43,21 +55,13 @@
         
         <DockPanel Grid.Column="0" Margin="3" LastChildFill="True">
             <Label DockPanel.Dock="Top" Content="Drinks" FontSize="20" />
+
             <ListBox Grid.Column="2" ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True" >
-                                <Setter Property="Background" Value="Black" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </ListBox.ItemContainerStyle>
             </ListBox>
         </DockPanel>
         
