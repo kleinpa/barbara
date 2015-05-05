@@ -1,0 +1,18 @@
+{
+  "author": "Peter Klein <peter@kleinpa.net> (http://kleinpa.net)",
+  "name": "barbara",
+  "description": "Barbara the Bar Bot Host",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "dependencies": {
+    "onoff": "^1.0.2",
+    "rc522-rfid": "^14.1.10"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
