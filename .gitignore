@@ -27,4 +27,4 @@ build/Release
 node_modules
 
 # Compiled stylesheet
-/public/stylesheets/style.css
+/public/css/style.css

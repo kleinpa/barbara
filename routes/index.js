@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+/* Just serve index.html and let Angular figure it out */
+router.get('/*', function(req, res, next) {
+  res.sendfile("index.html", {root: 'public'});
 });
 
 module.exports = router;
