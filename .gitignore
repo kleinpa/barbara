@@ -28,3 +28,6 @@ node_modules
 
 # Compiled stylesheet
 /public/stylesheets/style.css
+
+# Database files
+*.sqlite
