@@ -3,6 +3,7 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+  require('../lib/rpitest').toggle()
   res.send('respond with a resource');
 });
 
