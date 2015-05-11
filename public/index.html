@@ -12,14 +12,18 @@
   <script type="text/javascript" src="/js/index.js"></script>
 </head>
 <body>
-  <h1>Barbara the Bar Bot</h1>
-  <ul>
-    <li><a href="/">Home</a>
-    <li><a href="/menu">Menu</a>
-    <li><a href="/users">Users</a>
-    <li><a href="/configuration">Configuration</a>
-    <li><a href="/test">Test</a>
-  </ul>
-  <div ng-view></div>
+  <header>
+    <h1>Barbara the Bar Bot</h1>
+  </header>
+  <div class="content" ng-view></div>
+  <div class="menu">
+    <ul>
+      <li><a href="/" ng-class="{active:isActive('/')}">Home</a>
+      <li><a href="/menu" ng-class="{active:isActive('/menu/')}">Menu</a>
+      <li><a href="/users" ng-class="{active:isActive('/users/')}">Users</a>
+      <li><a href="/configuration" ng-class="{active:isActive('/configuration/')}">Configuration</a>
+      <li><a href="/test" ng-class="{active:isActive('/test/')}">Test</a>
+    </ul>
+  </div>
 </body>
 </html>
