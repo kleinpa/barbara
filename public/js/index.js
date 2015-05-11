@@ -51,19 +51,19 @@
       function($routeProvider, $locationProvider) {
         $locationProvider.html5Mode(true);
         $routeProvider.
+        //when('/', {
+        //  templateUrl: '/partials/home.html'
+        //}).
+        //when('/configuration/', {
+        //  templateUrl: '/partials/configuration.html'
+        //}).
         when('/', {
-          templateUrl: '/partials/home.html'
-        }).
-        when('/configuration/', {
-          templateUrl: '/partials/configuration.html'
-        }).
-        when('/menu/', {
           templateUrl: '/partials/menu.html',
           controller: 'CtrlMenu'
         }).
-        when('/users/', {
-          templateUrl: '/partials/users.html'
-        }).
+        //when('/users/', {
+        //  templateUrl: '/partials/users.html'
+        //}).
         when('/test/', {
           templateUrl: '/partials/test.html',
           controller: 'CtrlTest'
