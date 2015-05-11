@@ -30,6 +30,15 @@
         return route === $location.path();
       };
     })
+    .controller('CtrlMenu', function($scope, socket) {
+      $scope.volume = 100;
+      socket.emit('request-recipe-list');
+      socket.on('recipe-list', function(data){
+        $scope.recipes = data;
+      });
+      $scope.order = function(recipe, volume){
+        socket.emit('order', {recipe: recipe, volume: volume, user: null});
+      }
     })
     .config(['$routeProvider', '$locationProvider',
       function($routeProvider, $locationProvider) {

@@ -1,3 +1,5 @@
 <div>
-  Menu
+  <div ng-repeat="recipe in recipes">
+    <button ng-click="order(recipe, volume)">{{recipe.name}}</button>
+  </div>
 </div>
