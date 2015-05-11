@@ -1,5 +1,5 @@
 <div>
   <div ng-repeat="recipe in recipes">
-    <button ng-click="order(recipe, volume)">{{recipe.name}}</button>
+    <button ng-click="order(recipe, volume)" ng-disabled="isDispensing">{{recipe.name}}</button>
   </div>
 </div>

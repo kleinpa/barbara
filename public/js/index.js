@@ -25,10 +25,17 @@
         }
       };
     })
-    .controller('CtrlMain', function($scope, $http, $location) {
+    .controller('CtrlMain', function($scope, $http, $location, socket) {
       $scope.isActive = function(route) {
         return route === $location.path();
       };
+      $scope.isDispensing = false;
+      socket.on('dispensing', function() {
+        $scope.isDispensing = true;
+      });
+      socket.on('done-dispensing', function() {
+        $scope.isDispensing = false;
+      });
     })
     .controller('CtrlMenu', function($scope, socket) {
       $scope.volume = 100;
