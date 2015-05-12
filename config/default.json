@@ -6,5 +6,9 @@
     { "type": "SimulatedChannel" },
     { "type": "SimulatedChannel" },
     { "type": "SimulatedChannel" }
-  ]
+  ],
+  "database": {
+    "dialect": "sqlite",
+    "storage": "./db.development.sqlite"
+  }
 }

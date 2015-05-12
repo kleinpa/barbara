@@ -31,3 +31,5 @@ node_modules
 
 # Local config
 /config/*local*
+
+/db.*.sqlite

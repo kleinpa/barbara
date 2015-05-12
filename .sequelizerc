@@ -1,0 +1,8 @@
+var config = require('./config');
+
+var dbConfig = config.get('database');
+
+dbConfig.config = __filename,
+dbConfig["migrationsPath"] = "migrations",
+
+module.exports = dbConfig;

@@ -60,9 +60,10 @@
           templateUrl: '/partials/menu.html',
           controller: 'CtrlMenu'
         }).
-        //when('/users/', {
-        //  templateUrl: '/partials/users.html'
-        //}).
+        when('/users/', {
+          templateUrl: '/partials/users.html',
+          controller: 'CtrlUsers'
+        }).
         when('/test/', {
           templateUrl: '/partials/test.html',
           controller: 'CtrlTest'
@@ -109,5 +110,10 @@
       });
 
       $scope.z = 4;
+    })
+    .controller('CtrlUsers', function($scope, $http, $window, socket) {
+      socket.emit('get-users', null, function(data){
+        $scope.users = data;
+      });
     });
 }());
