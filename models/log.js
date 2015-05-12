@@ -3,8 +3,8 @@
 var Sequelize = require('sequelize');
 
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define('User', {
-    username: {type: Sequelize.STRING},
+  var Log = sequelize.define('Log', {
+    time: {type: Sequelize.DATE}
   });
-  return User;
+  return Log;
 };
