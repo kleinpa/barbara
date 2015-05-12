@@ -39,8 +39,7 @@
     })
     .controller('CtrlMenu', function($scope, socket) {
       $scope.volume = 100;
-      socket.emit('request-recipe-list');
-      socket.on('recipe-list', function(data){
+      socket.emit('get-recipes', null, function(data){
         $scope.recipes = data;
       });
       $scope.order = function(recipe, volume){
