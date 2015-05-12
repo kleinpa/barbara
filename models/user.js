@@ -7,6 +7,7 @@ module.exports = function(sequelize, DataTypes) {
       associate: function(models) {
         models.Recipe.hasMany(models.RecipeIngredient, {as: 'Ingredients'})
         User.hasMany(models.Log)
+        User.hasMany(models.Token)
       }
     }
   });
