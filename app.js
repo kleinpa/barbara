@@ -12,12 +12,6 @@ var users = require('./routes/users');
 
 var app = express();
 
-// setup nconf
-nconf.argv()
-  .env()
-  .add('user', { type: 'file', file: 'config/local.json' })
-  .add('default', { type: 'file', file: 'config/default.json' });
-
 // socket.io setup
 app.socketInit = function (server) {
   require('./lib/socket')(io.listen(server));
