@@ -1,8 +1,10 @@
 <div>
   <div ng-repeat="i in channels">
     <button ng-mousedown="set(i, 1)"
-	    ng-mouseup="set(i, 0)"
-	    ng-mouseleave="set(i, 0)">
+      ng-mouseup="set(i, 0)"
+      ng-mouseleave="set(i, 0)"
+      ng-touchstart ="set(i, 1)"
+      ng-touchend="set(i, 0)">
       Channel {{ i+1 }}
     </button>
   </div>

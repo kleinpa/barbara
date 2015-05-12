@@ -1,7 +1,7 @@
 /*global angular, d3, window*/
 (function() {
   'use strict';
-  angular.module('main', ['ngRoute'])
+  angular.module('main', ['ngRoute', 'ngTouchStartEnd'])
     .factory('socket', function($rootScope) {
       var socket = io.connect();
       return {
