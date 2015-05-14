@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* Just serve index.html and let Angular figure it out */
 router.get('/*', function(req, res, next) {
-  res.sendfile("index.html", {root: 'public'});
+  res.sendFile("index.html", {root: 'public'});
 });
 
 module.exports = router;

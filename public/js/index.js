@@ -25,6 +25,43 @@
         }
       };
     })
+    .factory('model', function(socket) {
+      function buildModel(name){
+        return {
+          index: function(fn){
+            socket.emit('index-'+name.plural.toLowerCase(), null, function(data){
+              fn(data);
+            });
+          },
+          create: function(data, fn){
+            socket.emit('create-'+name.singular.toLowerCase(), data, function(data){
+              fn(data);
+            });
+          },
+          show: function(data, fn){
+            socket.emit('show-'+name.singular.toLowerCase(), data, function(data){
+              fn(data);
+            });
+          },
+          update: function(data, fn){
+            socket.emit('update-'+name.singular.toLowerCase(), data, function(data){
+              fn(data);
+            });
+          },
+          destroy: function(data, fn){
+            socket.emit('destroy-'+name.singular.toLowerCase(), data, function(data){
+              fn(data);
+            });
+          }
+        }
+      }
+      return {
+        users: buildModel({singular: 'user', plural: 'users'}),
+        recipes: buildModel({singular: 'recipe', plural: 'recipes'}),
+        channels: buildModel({singular: 'channel', plural: 'channels'})
+      }
+
+    })
     .controller('CtrlMain', function($scope, $http, $location, socket) {
       $scope.isActive = function(route) {
         return route === $location.path();
@@ -37,9 +74,9 @@
         $scope.isDispensing = false;
       });
     })
-    .controller('CtrlMenu', function($scope, socket) {
+    .controller('CtrlMenu', function($scope, model) {
       $scope.volume = 100;
-      socket.emit('get-recipes', null, function(data){
+      model.recipes.index(function(data){
         $scope.recipes = data;
       });
       $scope.order = function(recipe, volume){
@@ -73,7 +110,7 @@
         });
       }
     ])
-    .controller('CtrlTest', function($scope, $http, $window, socket) {
+    .controller('CtrlTest', function($scope, $http, $window, socket, model) {
       $scope.channels = [0, 1, 2, 3, 4];
       var channel_states = {};
       socket.on('init', function(data) {
@@ -125,10 +162,18 @@
       });
 
       $scope.z = 4;
-    })
-    .controller('CtrlUsers', function($scope, $http, $window, socket) {
-      socket.emit('get-users', null, function(data){
-        $scope.users = data;
+      model.channels.index(function(data) {
+	$scope.channels = data;
       });
+    })
+    .controller('CtrlUsers', function($scope, $http, $window, socket, model) {
+      // socket.emit('get-users', null, function(data){
+      //   $scope.users = data;
+      // });
+      model.users.index(function(data) {
+	$scope.users = data;
+      });
+      $scope.createUser = function() {
+      };
     });
 }());

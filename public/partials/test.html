@@ -1,11 +1,11 @@
 <div>
-  <div ng-repeat="i in channels">
-    <button ng-mousedown="set(i, 1)"
-      ng-mouseup="set(i, 0)"
-      ng-mouseleave="set(i, 0)"
-      ng-touchstart ="set(i, 1)"
-      ng-touchend="set(i, 0)">
-      Channel {{ i+1 }}
+  <div ng-repeat="c in channels">
+    <button ng-mousedown="set(c.index, 1)"
+      ng-mouseup="set(c.index, 0)"
+      ng-mouseleave="set(c.index, 0)"
+      ng-touchstart ="set(c.index, 1)"
+      ng-touchend="set(c.index, 0)">
+      Channel {{ c.index + 1 }}
     </button>
   </div>
   <button ng-click="dispenseFor(0, rand)">

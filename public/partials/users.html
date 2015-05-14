@@ -1,3 +1,10 @@
 <div>
   Users
+  <form>
+    <input ng-model="newUser.name" placeholder="Name">
+    <button ng-click="createUser()">Create</button>
+    <div ng-repeat="user in users">
+      {{ user.name }}
+    </div>
+  </form>
 </div>
