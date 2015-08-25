@@ -8,4 +8,19 @@
       Channel {{ i+1 }}
     </button>
   </div>
+  <button ng-click="dispenseFor(0, rand)">
+    Dispense Channel 1 for {{ rand }}ms
+  </button>
+  <div ng-repeat="i in [500, 800, 1000, 20000  ]">
+    <button ng-click="dispenseFor(0, i)">
+      Dispense Channel 1 for {{ i }}ms
+    </button>
+  </div>
+  <div ng-repeat="i in [20, 40, 80, 100, 130]">
+    <button ng-click="dispenseVol(0, i)">
+      Dispense Channel 1 for {{ i }}ml
+    </button>
+  </div>
+
+
 </div>
