@@ -90,6 +90,21 @@
         }
       };
 
+      $scope.dispenseFor = function(channel, ms) {
+        socket.emit('test-dispense', {
+          c: channel,
+          ms: ms
+        });
+	$scope.rand = 3000+Math.floor(Math.random() * 10000);
+      };
+
+      $scope.dispenseVol = function(channel, ml) {
+        socket.emit('test-dispense-vol', {
+          c: channel,
+          ml: ml
+        });
+      };
+
       var keyDown = function(e) {
         var n = e.which - 49;
         if (n >= 0 && n < 5) {
